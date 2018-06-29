@@ -10,14 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2018_06_29_075510) do
+=======
 ActiveRecord::Schema.define(version: 2018_06_29_053535) do
+>>>>>>> d939978cba61795afe77f66e1dc1efc459985da7
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.integer "percent_utilized"
+=======
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "body"
+>>>>>>> d939978cba61795afe77f66e1dc1efc459985da7
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
