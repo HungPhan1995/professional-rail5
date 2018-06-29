@@ -635,3 +635,270 @@ Migrating to CreateProducts (20180607045734)
   [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mItem Update (0.8ms)[0m  [1m[33mUPDATE "items" SET "amount" = $1 WHERE "items"."id" = $2[0m  [["amount", 2], ["id", 1]]
   [1m[35m (22.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (21.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateArticles (20180524093843)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (238.7ms)[0m  [1m[35mCREATE TABLE "articles" ("id" bigserial primary key, "title" text, "solanlike" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180524093843_create_articles.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524093843"]]
+  ↳ bin/rails:9
+  [1m[35m (22.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTexts (20180524110043)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (77.3ms)[0m  [1m[35mCREATE TABLE "texts" ("id" bigserial primary key, "headline" character varying, "trinhtuhienthi" integer, "cauvan" text, "solanlike" integer)[0m
+  ↳ db/migrate/20180524110043_create_texts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524110043"]]
+  ↳ bin/rails:9
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateImages (20180524110627)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (79.7ms)[0m  [1m[35mCREATE TABLE "images" ("id" bigserial primary key, "headline" character varying, "trinhtuhienthi" integer, "urlhinh" text, "solanlike" integer)[0m
+  ↳ db/migrate/20180524110627_create_images.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524110627"]]
+  ↳ bin/rails:9
+  [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddReferenceToArticles (20180524114546)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "articles" ADD "text_id" bigint[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:3
+  [1m[35m (44.8ms)[0m  [1m[35mCREATE  INDEX  "index_articles_on_text_id" ON "articles"  ("text_id")[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "articles" ADD "image_id" bigint[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:4
+  [1m[35m (41.9ms)[0m  [1m[35mCREATE  INDEX  "index_articles_on_image_id" ON "articles"  ("image_id")[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524114546"]]
+  ↳ bin/rails:9
+  [1m[35m (13.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20180607045406)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (103.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying)[0m
+  ↳ db/migrate/20180607045406_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045406"]]
+  ↳ bin/rails:9
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateItems (20180607045648)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (49.6ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "product_id" bigint, "user_id" bigint, "amount" integer DEFAULT 1)[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[35m (31.0ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_product_id" ON "items"  ("product_id")[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[35m (32.3ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_user_id" ON "items"  ("user_id")[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045648"]]
+  ↳ bin/rails:9
+  [1m[35m (9.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateProducts (20180607045734)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (86.6ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "name" character varying)[0m
+  ↳ db/migrate/20180607045734_create_products.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045734"]]
+  ↳ bin/rails:9
+  [1m[35m (19.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateSkills (20180629075510)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (76.2ms)[0m  [1m[35mCREATE TABLE "skills" ("id" bigserial primary key, "title" character varying, "percent_utilized" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180629075510_create_skills.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180629075510"]]
+  ↳ bin/rails:9
+  [1m[35m (18.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (218.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "article_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (238.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "article_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (837.6ms)[0m  [1m[35mCREATE DATABASE "article_development" ENCODING = 'utf8'[0m
+  ↳ bin/rails:9
+  [1m[35m (645.8ms)[0m  [1m[35mCREATE DATABASE "article_test" ENCODING = 'utf8'[0m
+  ↳ bin/rails:9
+  [1m[35m (114.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (86.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateArticles (20180524093843)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (135.6ms)[0m  [1m[35mCREATE TABLE "articles" ("id" bigserial primary key, "title" text, "solanlike" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180524093843_create_articles.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524093843"]]
+  ↳ bin/rails:9
+  [1m[35m (32.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTexts (20180524110043)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (70.1ms)[0m  [1m[35mCREATE TABLE "texts" ("id" bigserial primary key, "headline" character varying, "trinhtuhienthi" integer, "cauvan" text, "solanlike" integer)[0m
+  ↳ db/migrate/20180524110043_create_texts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524110043"]]
+  ↳ bin/rails:9
+  [1m[35m (10.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateImages (20180524110627)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (84.3ms)[0m  [1m[35mCREATE TABLE "images" ("id" bigserial primary key, "headline" character varying, "trinhtuhienthi" integer, "urlhinh" text, "solanlike" integer)[0m
+  ↳ db/migrate/20180524110627_create_images.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524110627"]]
+  ↳ bin/rails:9
+  [1m[35m (11.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddReferenceToArticles (20180524114546)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "articles" ADD "text_id" bigint[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:3
+  [1m[35m (35.2ms)[0m  [1m[35mCREATE  INDEX  "index_articles_on_text_id" ON "articles"  ("text_id")[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "articles" ADD "image_id" bigint[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:4
+  [1m[35m (31.2ms)[0m  [1m[35mCREATE  INDEX  "index_articles_on_image_id" ON "articles"  ("image_id")[0m
+  ↳ db/migrate/20180524114546_add_reference_to_articles.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180524114546"]]
+  ↳ bin/rails:9
+  [1m[35m (18.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20180607045406)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying)[0m
+  ↳ db/migrate/20180607045406_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045406"]]
+  ↳ bin/rails:9
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateItems (20180607045648)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (41.9ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "product_id" bigint, "user_id" bigint, "amount" integer DEFAULT 1)[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[35m (28.0ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_product_id" ON "items"  ("product_id")[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[35m (30.9ms)[0m  [1m[35mCREATE  INDEX  "index_items_on_user_id" ON "items"  ("user_id")[0m
+  ↳ db/migrate/20180607045648_create_items.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045648"]]
+  ↳ bin/rails:9
+  [1m[35m (17.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateProducts (20180607045734)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (67.9ms)[0m  [1m[35mCREATE TABLE "products" ("id" bigserial primary key, "name" character varying)[0m
+  ↳ db/migrate/20180607045734_create_products.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180607045734"]]
+  ↳ bin/rails:9
+  [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateSkills (20180629075510)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (66.9ms)[0m  [1m[35mCREATE TABLE "skills" ("id" bigserial primary key, "title" character varying, "percent_utilized" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180629075510_create_skills.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180629075510"]]
+  ↳ bin/rails:9
+  [1m[35m (15.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-29 07:58:55.374758"], ["updated_at", "2018-06-29 07:58:55.374758"]]
+  ↳ bin/rails:9
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (225.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "article_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (334.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "article_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (609.9ms)[0m  [1m[35mCREATE DATABASE "article_development" ENCODING = 'utf8'[0m
+  ↳ bin/rails:9
+  [1m[35m (746.4ms)[0m  [1m[35mCREATE DATABASE "article_test" ENCODING = 'utf8'[0m
+  ↳ bin/rails:9
+  [1m[35m (111.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (162.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateSkills (20180629075510)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (69.4ms)[0m  [1m[35mCREATE TABLE "skills" ("id" bigserial primary key, "title" character varying, "percent_utilized" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180629075510_create_skills.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180629075510"]]
+  ↳ bin/rails:9
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-29 08:00:50.195499"], ["updated_at", "2018-06-29 08:00:50.195499"]]
+  ↳ bin/rails:9
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(3112103595457663065)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9

@@ -10,50 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_045734) do
+ActiveRecord::Schema.define(version: 2018_06_29_075510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
-    t.text "title"
-    t.integer "solanlike"
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.integer "percent_utilized"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "text_id"
-    t.bigint "image_id"
-    t.index ["image_id"], name: "index_articles_on_image_id"
-    t.index ["text_id"], name: "index_articles_on_text_id"
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "headline"
-    t.integer "trinhtuhienthi"
-    t.text "urlhinh"
-    t.integer "solanlike"
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "user_id"
-    t.integer "amount"
-    t.index ["product_id"], name: "index_items_on_product_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "texts", force: :cascade do |t|
-    t.string "headline"
-    t.integer "trinhtuhienthi"
-    t.text "cauvan"
-    t.integer "solanlike"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
   end
 
 end
